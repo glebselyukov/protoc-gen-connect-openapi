@@ -1,10 +1,10 @@
 package gnostic
 
 import (
+	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/options"
 	goa3 "github.com/google/gnostic/openapiv3"
 	highbase "github.com/pb33f/libopenapi/datamodel/high/base"
 	highv3 "github.com/pb33f/libopenapi/datamodel/high/v3"
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/options"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protoreflect"
 )

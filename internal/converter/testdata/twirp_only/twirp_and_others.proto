@@ -6,7 +6,7 @@ import "buf/validate/validate.proto";
 import "google/api/annotations.proto";
 import "gnostic/openapi/v3/annotations.proto";
 
-option go_package = "github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/testdata/twirp_and_others";
+option go_package = "github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/testdata/twirp_and_others";
 
 option (gnostic.openapi.v3.document) = {
   info: {

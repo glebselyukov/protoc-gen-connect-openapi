@@ -3,15 +3,15 @@ package converter
 import (
 	"log/slog"
 
+	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/connectrpc"
+	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/gnostic"
+	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/googleapi"
+	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/options"
+	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/twirp"
+	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/util"
+	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/visibility"
 	v3 "github.com/pb33f/libopenapi/datamodel/high/v3"
 	"github.com/pb33f/libopenapi/orderedmap"
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/connectrpc"
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/gnostic"
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/googleapi"
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/options"
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/twirp"
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/util"
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/visibility"
 	"google.golang.org/protobuf/reflect/protoreflect"
 )
 

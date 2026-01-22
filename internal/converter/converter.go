@@ -1,7 +1,6 @@
 package converter
 
 import (
-	"errors"
 	"fmt"
 	"io"
 	"log/slog"
@@ -11,7 +10,7 @@ import (
 
 	"github.com/lmittmann/tint"
 	"github.com/pb33f/libopenapi"
-	base "github.com/pb33f/libopenapi/datamodel/high/base"
+	"github.com/pb33f/libopenapi/datamodel/high/base"
 	v3 "github.com/pb33f/libopenapi/datamodel/high/v3"
 	"github.com/pb33f/libopenapi/index"
 	"github.com/pb33f/libopenapi/orderedmap"
@@ -21,12 +20,12 @@ import (
 	"google.golang.org/protobuf/reflect/protoreflect"
 	"google.golang.org/protobuf/types/descriptorpb"
 	"google.golang.org/protobuf/types/dynamicpb"
-	pluginpb "google.golang.org/protobuf/types/pluginpb"
+	"google.golang.org/protobuf/types/pluginpb"
 
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/gnostic"
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/options"
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/util"
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/visibility"
+	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/gnostic"
+	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/options"
+	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/util"
+	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/visibility"
 )
 
 func ConvertFrom(rd io.Reader) (*pluginpb.CodeGeneratorResponse, error) {
@@ -104,14 +103,12 @@ func ConvertWithOptions(req *pluginpb.CodeGeneratorRequest, opts options.Options
 			if err != nil {
 				return &v3.Document{}, fmt.Errorf("unmarshalling base: %w", err)
 			}
-			v3Document, errs := document.BuildV3Model()
-			if len(errs) > 0 {
-				var merr error
-				for _, err := range errs {
-					merr = errors.Join(merr, err)
-				}
-				return nil, merr
+
+			v3Document, err := document.BuildV3Model()
+			if err != nil {
+				return nil, fmt.Errorf("building v3 model: %w", err)
 			}
+
 			model := &v3Document.Model
 			initializeDoc(opts, model)
 			return model, nil
@@ -199,18 +196,17 @@ func getOverrideComponents(opts options.Options) (*v3.Components, error) {
 	if len(opts.OverrideOpenAPI) == 0 {
 		return nil, nil
 	}
+
 	document, err := libopenapi.NewDocument(opts.OverrideOpenAPI)
 	if err != nil {
 		return nil, fmt.Errorf("unmarshaling base: %w", err)
 	}
-	v3Document, errs := document.BuildV3Model()
-	if len(errs) > 0 {
-		var merr error
-		for _, err := range errs {
-			merr = errors.Join(merr, err)
-		}
-		return nil, merr
+
+	v3Document, err := document.BuildV3Model()
+	if err != nil {
+		return nil, fmt.Errorf("building v3 model: %w", err)
 	}
+
 	return v3Document.Model.Components, nil
 }
 

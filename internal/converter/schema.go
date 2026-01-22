@@ -10,10 +10,10 @@ import (
 	"go.yaml.in/yaml/v4"
 	"google.golang.org/protobuf/reflect/protoreflect"
 
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/options"
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/schema"
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/util"
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/visibility"
+	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/options"
+	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/schema"
+	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/util"
+	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/visibility"
 )
 
 func AddMessageSchemas(opts options.Options, md protoreflect.MessageDescriptor, doc *v3.Document) {

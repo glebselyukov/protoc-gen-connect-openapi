@@ -6,8 +6,8 @@ import (
 	"log/slog"
 	"slices"
 
-	intconverter "github.com/sudorandom/protoc-gen-connect-openapi/internal/converter"
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/options"
+	intconverter "github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter"
+	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/options"
 	"google.golang.org/protobuf/reflect/protodesc"
 	"google.golang.org/protobuf/reflect/protoreflect"
 	"google.golang.org/protobuf/reflect/protoregistry"

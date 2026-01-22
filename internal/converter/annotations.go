@@ -1,11 +1,11 @@
 package converter
 
 import (
+	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/gnostic"
+	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/googleapi"
+	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/options"
+	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/protovalidate"
 	"github.com/pb33f/libopenapi/datamodel/high/base"
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/gnostic"
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/googleapi"
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/options"
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/protovalidate"
 	"google.golang.org/protobuf/reflect/protoreflect"
 )
 

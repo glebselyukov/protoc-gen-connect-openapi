@@ -5,12 +5,12 @@ import (
 	"log/slog"
 	"slices"
 
+	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/options"
+	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/util"
 	goa3 "github.com/google/gnostic/openapiv3"
 	"github.com/pb33f/libopenapi/datamodel/high/base"
 	"github.com/pb33f/libopenapi/orderedmap"
 	"github.com/pb33f/libopenapi/utils"
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/options"
-	"github.com/sudorandom/protoc-gen-connect-openapi/internal/converter/util"
 	"go.yaml.in/yaml/v4"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protoreflect"
@@ -229,7 +229,7 @@ func schemaWithAnnotations(opts options.Options, schema *base.Schema, gnosticSch
 
 func expandExampleEntry(entry any) *yaml.Node {
 	switch vv := entry.(type) {
-	//Handle mapping nodes
+	// Handle mapping nodes
 	case map[any]any:
 		node := utils.CreateEmptyMapNode()
 		for k, v := range vv {
