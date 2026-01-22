@@ -3,16 +3,17 @@ package gnostic
 import (
 	"strconv"
 
-	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/options"
-	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/util"
 	goa3 "github.com/google/gnostic/openapiv3"
-	base "github.com/pb33f/libopenapi/datamodel/high/base"
+	"github.com/pb33f/libopenapi/datamodel/high/base"
 	v3 "github.com/pb33f/libopenapi/datamodel/high/v3"
-	low "github.com/pb33f/libopenapi/datamodel/low"
+	"github.com/pb33f/libopenapi/datamodel/low"
 	lowBase "github.com/pb33f/libopenapi/datamodel/low/base"
 	"github.com/pb33f/libopenapi/orderedmap"
 	"github.com/pb33f/libopenapi/utils"
 	"go.yaml.in/yaml/v4"
+
+	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/options"
+	"github.com/glebselyukov/protoc-gen-connect-openapi/internal/converter/util"
 )
 
 func toServers(servers []*goa3.Server) []*v3.Server {
@@ -564,7 +565,18 @@ func toParameter(opts options.Options, paramOrRef *goa3.ParameterOrReference) *v
 		return nil
 	}
 	param := paramOrRef.GetParameter()
+
+	var xref string
+
+	ref := paramOrRef.GetReference()
+	if ref != nil {
+		xref = ref.GetXRef()
+	}
+
+	paramOrRef.GetReference().GetXRef()
+
 	return &v3.Parameter{
+		Reference:       xref,
 		Name:            param.GetName(),
 		In:              param.In,
 		Description:     param.Description,
